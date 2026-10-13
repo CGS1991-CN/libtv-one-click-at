@@ -1,0 +1,45 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+const os = require('node:os');
+const { prepare, defaultDestination, validateSource } = require('../scripts/prepare-chrome-extension.cjs');
+
+test('source checksums and icon dimensions are valid', async () => assert.equal((await validateSource()).manifest.version, '1.0.4'));
+test('stable platform destinations are separated from browser profiles', () => {
+  assert(defaultDestination('darwin', '/Users/example').includes('Application Support'));
+  assert(defaultDestination('linux', '/users/example').endsWith('libtv-one-click-at'));
+  assert(!defaultDestination().toLowerCase().includes('chrome'));
+});
+test('fresh prepare, idempotence, backup, dry-run and refusal preserve user files', async t => {
+  const temp = await fs.mkdtemp(path.join(os.tmpdir(), 'libtv-install-test-'));
+  t.after(() => fs.rm(temp, { recursive: true }));
+  const dest = path.join(temp, 'extension');
+  const dry = await prepare({ destination: dest, dryRun: true });
+  assert.equal(dry.status, 'dry_run');
+  await assert.rejects(fs.stat(dest), { code: 'ENOENT' });
+  const fresh = await prepare({ destination: dest });
+  assert.equal(fresh.status, 'prepared');
+  assert.equal(fresh.chromeLoaded, 'unverified');
+  assert.equal(fresh.manualChromeLoadRequired, true);
+  assert.equal((await prepare({ destination: dest })).status, 'already_prepared');
+  const manifestPath = path.join(dest, 'manifest.json');
+  const old = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+  old.version = '1.0.3';
+  await fs.writeFile(manifestPath, JSON.stringify(old));
+  const updated = await prepare({ destination: dest });
+  assert(updated.backupDirectory);
+  assert.equal(JSON.parse(await fs.readFile(path.join(updated.backupDirectory, 'manifest.json'), 'utf8')).version, '1.0.3');
+  await fs.writeFile(path.join(dest, 'user-note.txt'), 'keep me');
+  await assert.rejects(prepare({ destination: dest }), /extra files/);
+  assert.equal(await fs.readFile(path.join(dest, 'user-note.txt'), 'utf8'), 'keep me');
+  const unrelated = path.join(temp, 'unrelated');
+  await fs.mkdir(unrelated);
+  await fs.writeFile(path.join(unrelated, 'note.txt'), 'original');
+  await assert.rejects(prepare({ destination: unrelated }), /not a recognized/);
+  assert.equal(await fs.readFile(path.join(unrelated, 'note.txt'), 'utf8'), 'original');
+  const link = path.join(temp, 'link');
+  await fs.symlink(unrelated, link, 'dir');
+  await assert.rejects(prepare({ destination: link }), /regular extension directory/);
+  await assert.rejects(prepare({ destination: os.homedir() }), /broad/);
+});

@@ -1,0 +1,17 @@
+{
+  "name": "libtv-one-click-at",
+  "version": "1.0.4",
+  "description": "LibTV numbered image-reference binding with a safe Codex installation assistant.",
+  "author": { "name": "CGS1991-CN" },
+  "homepage": "https://github.com/CGS1991-CN/libtv-one-click-at",
+  "repository": "https://github.com/CGS1991-CN/libtv-one-click-at",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LibTV 一键绑定 @",
+    "shortDescription": "严格按编号绑定参考图，含安装助手",
+    "logo": "./assets/icon.png",
+    "composerIcon": "./assets/icon.png",
+    "defaultPrompt": "准备 LibTV 一键绑定 @ 扩展，保留已有配置，不开始生成。"
+  }
+}

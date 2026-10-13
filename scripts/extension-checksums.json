@@ -1,0 +1,14 @@
+{
+  "version": "1.0.4",
+  "files": {
+    "manifest.json": "82e0804bc0b55b2ce1e7137708c393037ec2207b55321d59452bb330be052a7c",
+    "content.js": "2971b09b767e51c3e88e7916adfe4b55e29c7afe73580528dbb814f1d78d257d",
+    "content.css": "639cc5c9209c143e7cbe93d52d6d7c008e5ab58c9b7c54fbe612f500d9f8733d",
+    "README.md": "af82b5caa93d7269bfa170643f1587fe11cd6a3f64f524f8a91021e370b3cd55",
+    "LICENSE": "ac767598b290c6489c82fefa3e694f30afa82de8860efbf4802b4eb5fbbd9251",
+    "icons/icon-16.png": "4f7ac22e8b6c02d7218d6e6adaef93809636b5d5c2f44c036053b9e568912f4b",
+    "icons/icon-32.png": "a3bf7d2e00133dfab739798e49eff020dfe2348e607a1ef21ca3ca8d62c2fe2b",
+    "icons/icon-48.png": "49a688324a757b865bd20922e89a5eb5392d9f1fa5b93c446fa36a9a4d3bd3d2",
+    "icons/icon-128.png": "235a9eba51dda7623a51481f1676059fb41bfd7edc611eaee3b835288614cc15"
+  }
+}

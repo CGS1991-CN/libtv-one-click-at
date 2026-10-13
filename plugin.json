@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "libtv-one-click-at",
+  "version": "1.0.4",
+  "description": "Prepare the LibTV One-Click @ Chrome extension safely from Codex; native Chrome loading still requires user action.",
+  "author": { "name": "CGS1991-CN", "url": "https://github.com/CGS1991-CN" },
+  "homepage": "https://github.com/CGS1991-CN/libtv-one-click-at",
+  "repository": "https://github.com/CGS1991-CN/libtv-one-click-at",
+  "license": "MIT",
+  "keywords": ["libtv", "chrome-extension", "reference-images", "codex"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/libtv-one-click-at-install/SKILL.md",
+      "interface": {
+        "displayName": "LibTV 一键绑定 @",
+        "shortDescription": "严格按编号绑定参考图，含安装助手",
+        "longDescription": "Chrome 扩展按 @image1、@图片 1、@图1 的明确编号绑定 LibTV 参考图，不自动生成。Codex 安装助手校验并准备本地扩展文件，备份已有安装。首次加载或重新加载到 Chrome 仍需用户在扩展管理页完成；不宣称零操作安装。",
+        "developerName": "CGS1991-CN",
+        "category": "Productivity",
+        "logo": "./assets/icon.png",
+        "composerIcon": "./assets/icon.png",
+        "brandColor": "#09b8d6",
+        "defaultPrompt": "准备 LibTV 一键绑定 @ 扩展，保留已有配置，不开始生成；仅在 Chrome 必须人工加载时告诉我最短步骤。"
+      }
+    }
+  }
+}

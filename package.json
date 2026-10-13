@@ -1,0 +1,12 @@
+{
+  "name": "libtv-one-click-at",
+  "version": "1.0.4",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "check": "node --check extension/content.js && node --check scripts/prepare-chrome-extension.cjs",
+    "prepare-extension": "node scripts/prepare-chrome-extension.cjs --json"
+  }
+}

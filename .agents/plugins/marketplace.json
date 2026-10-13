@@ -1,0 +1,12 @@
+{
+  "name": "libtv-one-click-at-marketplace",
+  "interface": { "displayName": "LibTV One-Click @" },
+  "plugins": [
+    {
+      "name": "libtv-one-click-at",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

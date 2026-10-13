@@ -1,0 +1,6 @@
+.libtv-numbered-at { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:8px 0; padding:8px 10px; border:1px solid #4b5664; border-radius:10px; background:#20252d; color:#dce6ed; font:12px/1.5 system-ui,sans-serif; }
+.libtv-numbered-at button { cursor:pointer; border:1px solid #536575; border-radius:7px; padding:5px 9px; background:#2d3743; color:#eaf6ff; font:inherit; white-space:nowrap; }
+.libtv-numbered-at button.libtv-numbered-at-primary { border-color:#09b8d6; background:#064d5b; color:#bff7ff; font-weight:650; }
+.libtv-numbered-at button:disabled { opacity:.45; cursor:not-allowed; }
+.libtv-numbered-at-status { flex:1; min-width:140px; color:#a8c4cc; }
+.libtv-numbered-at-status[data-error="true"] { color:#ffb5a6; }

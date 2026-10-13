@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+*.zip
+*.crx
+*.pem
+*.backup-*/
+.libtv-one-click-at-stage-*/
